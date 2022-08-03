@@ -1,9 +1,7 @@
 # battleship
 2 player game currently in development. 
 
-Done:
-  backend game logic
-  unit tests
+Done: backend game logic and unit tests
 
 To Do:
   Clean up main.py. I know very little about pygame and this feels very hacky.
