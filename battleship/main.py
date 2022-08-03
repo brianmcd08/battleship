@@ -193,15 +193,6 @@ def get_ship_coordinates(screen: pygame.Surface, player: Player,
     return coordinates
 
 
-def take_player_turn(screen: pygame.Surface, player1: Player, player2: Player) -> bool:
-    # done = False
-    for _ in range(3):
-        get_attack(screen, player1, player2)
-        get_attack(screen, player2, player1)
-
-    return True
-
-
 def play(screen: pygame.Surface, players: list[Player]):
     winner = None
     done = False
@@ -216,6 +207,15 @@ def play(screen: pygame.Surface, players: list[Player]):
             winner = players[1]
 
     print(f'{winner.get_name()} wins!')
+
+
+def take_player_turn(screen: pygame.Surface, player1: Player, player2: Player) -> bool:
+    # done = False
+    for _ in range(3):
+        get_attack(screen, player1, player2)
+        get_attack(screen, player2, player1)
+
+    return True
 
 
 if __name__ == "__main__":
