@@ -210,7 +210,7 @@ def play(screen: pygame.Surface, players: list[Player]):
 
 
 def take_player_turn(screen: pygame.Surface, player1: Player, player2: Player) -> bool:
-    # done = False
+    done = False
     for _ in range(3):
         get_attack(screen, player1, player2)
         get_attack(screen, player2, player1)
