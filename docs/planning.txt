@@ -1,0 +1,32 @@
+# battleship Game
+#===============
+
+#Two-player game mimicing the classic battleship game.
+#Ships: Destroyer (2), Submarine (3), Cruiser (3), battleship (4), Carrier (5)
+
+# Phase 1:
+    # Players take turns entering their ships via console input and firing on each other until all ships are sunk and
+    # a winner is declared.
+# Phase 2:
+    # Players use graphical input to enter their ships and fire their shots.
+# Phase 3:
+    # Players connect via network connection and the server manages the turns.
+# Phase 4:
+    # Players connect via website.
+
+# Phase 1 game components:
+    # ? Coordinate -> namedtuple of x,y int values
+    # SquareStatus -> enum of nothing, hit, or miss
+    # ShipStatus -> INTACT, HIT, SUNK
+    # Square -> Contains coordinate, Status, and Ship
+    #        -> get_status, update_status
+    # Board -> 2d array of squares representing the board
+    #        -> board representation for self and opponent
+    #        -> get_status, update_status
+    # Ship -> set of Coordinates, Name, Hit-Count
+    #       -> get_status, register_hit, verify_vertical_horizontal, verify_in_grid
+    # Fleet -> Set of Ships representing the ships the player has
+    #       -> get_num_remaining_ships, add_ship, is_unique, is_overlapping
+    # Player -> Fleet, Grid, Player Name
+    # Game -> Players
+
