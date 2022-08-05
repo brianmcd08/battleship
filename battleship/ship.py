@@ -3,7 +3,7 @@ from enum import Enum
 from typing import Set
 
 from battleship.coordinate import Coordinate
-from config import BOARD_SIZE
+from battleship.constants import BOARD_SIZE
 
 
 class ShipStatus(Enum):
@@ -14,7 +14,7 @@ class ShipStatus(Enum):
 
 class ShipType(Enum):
     DESTROYER = 1
-    SUBMARINE = 2
+    # SUBMARINE = 2
     # CRUISER = 3
     # BATTLESHIP = 4
     # CARRIER = 5
@@ -23,7 +23,7 @@ class ShipType(Enum):
 class Ship:
     SHIP_SIZE = {
         ShipType.DESTROYER: 2,
-        ShipType.SUBMARINE: 3,
+        # ShipType.SUBMARINE: 3,
         # ShipType.CRUISER: 3,
         # ShipType.BATTLESHIP: 4,
         # ShipType.CARRIER: 5,
@@ -31,7 +31,7 @@ class Ship:
 
     SHIP_DESCRIPTION = {
         ShipType.DESTROYER: 'Destroyer',
-        ShipType.SUBMARINE: 'Submarine',
+        # ShipType.SUBMARINE: 'Submarine',
         # ShipType.CRUISER: 'Cruiser',
         # ShipType.BATTLESHIP: 'battleship',
         # ShipType.CARRIER: 'Carrier',

@@ -5,7 +5,7 @@ from typing import List
 from battleship.coordinate import Coordinate
 from battleship.ship import Ship
 from battleship.square import Square, SquareStatus
-from config import BOARD_SIZE
+from battleship.constants import BOARD_SIZE
 
 
 class BoardPerspective(Enum):

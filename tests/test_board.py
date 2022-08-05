@@ -1,7 +1,7 @@
 from battleship.board import BoardPerspective
 from battleship.coordinate import Coordinate
 from battleship.square import SquareStatus
-from config import BOARD_SIZE
+from battleship.constants import BOARD_SIZE
 
 
 def test_create_board(board):
