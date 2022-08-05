@@ -1,6 +1,6 @@
 """Battleship game"""
 from time import sleep
-from typing import Optional, List
+from typing import Optional
 
 import pygame
 
@@ -19,8 +19,11 @@ def main():
     pygame.init()
     screen = pygame.display.set_mode((WINDOW_SIZE, WINDOW_SIZE))
     setup_board(screen, players)
+    pygame.display.quit()
+    pygame.init()
     screen = pygame.display.set_mode((WINDOW_SIZE * 2 + 42, WINDOW_SIZE))
     play(screen, players)
+    pygame.display.quit()
 
 
 def get_attack(screen: pygame.Surface, player: Player, opponent: Player) -> SquareStatus:
@@ -28,7 +31,7 @@ def get_attack(screen: pygame.Surface, player: Player, opponent: Player) -> Squa
     pygame_done = False
     while not pygame_done:
         screen.fill(BLACK)
-        grid: List[List[SquareStatus]] = opponent.get_board(BoardPerspective.OPPONENT)
+        grid = opponent.get_board(BoardPerspective.OPPONENT)
         for row in range(BOARD_SIZE):
             for column in range(BOARD_SIZE):
                 draw_rect(screen, grid, row, column)
@@ -38,7 +41,7 @@ def get_attack(screen: pygame.Surface, player: Player, opponent: Player) -> Squa
             draw_separator(screen, row, BOARD_SIZE)
 
         # Draw "read-only" grid
-        grid2: List[List[SquareStatus]] = player.get_board(BoardPerspective.CURRENT)
+        grid2 = player.get_board(BoardPerspective.CURRENT)
         for row in range(BOARD_SIZE):
             for column in range(BOARD_SIZE+1, BOARD_SIZE*2+1):
                 draw_rect(screen, grid2, row, column)
@@ -50,13 +53,16 @@ def get_attack(screen: pygame.Surface, player: Player, opponent: Player) -> Squa
                 pygame_done = True
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 # User clicks the mouse. Get the position
-                pos: tuple[int, int] = pygame.mouse.get_pos()
+                pos = pygame.mouse.get_pos()
                 # Change the x/y screen coordinates to grid coordinates
                 column = pos[0] // (CELL_WIDTH + CELL_MARGIN)
                 if column > BOARD_SIZE - 1:
                     # click is on the "non-clickable" board
                     continue
                 row = pos[1] // (CELL_HEIGHT + CELL_MARGIN)
+                if grid[row][column] in {SquareStatus.HIT, SquareStatus.MISS}:
+                    continue
+
                 grid[row][column] = opponent.register_shot(Coordinate(row, column))
 
                 if grid[row][column] == SquareStatus.HIT:

@@ -58,8 +58,7 @@ def get_ship_coordinates(screen: pygame.Surface, player: Player,
 
         for event in pygame.event.get():  # User did something
             # If user clicked close
-            if (event.type == pygame.QUIT and
-                    len(coordinates) == ship_length):
+            if event.type == pygame.QUIT:
                 pygame_done = True
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 # User clicks the mouse. Get the position
@@ -77,6 +76,6 @@ def get_ship_coordinates(screen: pygame.Surface, player: Player,
                     if Ship.is_horizontal_or_vertical(temp_coordinates) and len(temp_coordinates) <= ship_length:
                         grid[row][column] = SquareStatus.NEW
                         coordinates.add(Coordinate(row, column))
-                    if len(temp_coordinates) == ship_length:
-                        pygame_done = True
+                        if len(coordinates) == ship_length:
+                            pygame_done = True
     return coordinates
