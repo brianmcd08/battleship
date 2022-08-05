@@ -5,7 +5,7 @@ from battleship.board import Board, BoardPerspective
 from battleship.coordinate import Coordinate
 from battleship.fleet import Fleet
 from battleship.ship import Ship
-from battleship.square import SquareStatus, Square
+from battleship.square import SquareStatus
 
 
 class Player:
@@ -17,8 +17,8 @@ class Player:
     def get_name(self) -> str:
         return self._name
 
-    def get_raw_board(self) -> List[List[Square]]:
-        return self._board.get_raw_board()
+    def get_raw_board(self) -> Board:
+        return self._board
 
     def get_board(self, perspective: BoardPerspective) -> List[List[SquareStatus]]:
         return self._board.get_board(perspective)

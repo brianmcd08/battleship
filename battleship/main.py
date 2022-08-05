@@ -11,6 +11,7 @@ from battleship.coordinate import Coordinate
 from battleship.graphics import display_message, draw_separator, draw_rect
 from battleship.player import Player
 from battleship.setup_game import get_players, setup_board
+from battleship.ship import ShipStatus, Ship
 from battleship.square import SquareStatus
 
 
@@ -66,7 +67,12 @@ def get_attack(screen: pygame.Surface, player: Player, opponent: Player) -> Squa
                 grid[row][column] = opponent.register_shot(Coordinate(row, column))
 
                 if grid[row][column] == SquareStatus.HIT:
-                    display_message(screen, 'Hit!')
+                    # get ship at Coordinate and if sunk, print that message in addition to the Hit message
+                    ship = opponent.get_raw_board().get_raw_board()[row][column].get_ship()
+                    if ship.get_status() == ShipStatus.SUNK:
+                        display_message(screen, f'{Ship.SHIP_DESCRIPTION[ship.get_type()]} sunk!')
+                    else:
+                        display_message(screen, 'Hit!')
                 else:
                     display_message(screen, 'Miss!')
 
