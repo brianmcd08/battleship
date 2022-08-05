@@ -17,8 +17,9 @@ from battleship.square import SquareStatus
 def main():
     players = get_players()
     pygame.init()
-    screen = pygame.display.set_mode((WINDOW_SIZE*2, WINDOW_SIZE))
+    screen = pygame.display.set_mode((WINDOW_SIZE, WINDOW_SIZE))
     setup_board(screen, players)
+    screen = pygame.display.set_mode((WINDOW_SIZE * 2 + 42, WINDOW_SIZE))
     play(screen, players)
 
 
